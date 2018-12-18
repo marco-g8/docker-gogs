@@ -1,0 +1,28 @@
+FROM registry.access.redhat.com/rhel7:7.6
+
+# Prerequisites
+RUN  yum repolist --disablerepo=* \
+  && yum-config-manager --disable \* > /dev/null \
+  && yum-config-manager --enable rhel-7-server-rpms > /dev/null \
+  && yum -y update \
+  && yum -y install git unzip wget \
+  && yum clean all \
+  && rm -rvf /var/cache/yum
+
+# Copy assets
+COPY RELEASE /
+COPY assets/ /assets/
+
+ENV GOGS_CUSTOM /data/gogs
+
+# Configure LibC Name Service
+COPY nsswitch.conf /etc/nsswitch.conf
+
+RUN /assets/setup.sh
+
+USER git
+
+VOLUME ["/data"]
+EXPOSE 3000
+ENTRYPOINT ["/assets/start.sh"]
+CMD ["/app/gogs/gogs", "web"]

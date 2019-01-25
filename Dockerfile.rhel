@@ -5,7 +5,7 @@ RUN  yum repolist --disablerepo=* \
   && yum-config-manager --disable \* > /dev/null \
   && yum-config-manager --enable rhel-7-server-rpms > /dev/null \
   && yum -y update \
-  && yum -y install git unzip wget \
+  && yum -y install git wget \
   && yum clean all \
   && rm -rvf /var/cache/yum
 

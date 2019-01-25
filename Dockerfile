@@ -2,7 +2,7 @@ FROM centos:7
 
 # Prerequisites
 RUN    yum -y update \
-    && yum -y install git unzip wget \
+    && yum -y install git wget \
     && yum clean all \
     && rm -rvf /var/cache/yum
 

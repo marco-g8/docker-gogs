@@ -5,11 +5,11 @@ set -e
 source /RELEASE
 
 # Install Gogs binary
-wget --quiet ${DOWNLOAD_URL} -O /tmp/gogs.zip
+wget --quiet ${DOWNLOAD_URL} -O /tmp/gogs.tar.gz
 mkdir /app
 mkdir /data
-unzip -d /app /tmp/gogs.zip > /dev/null
-rm /tmp/gogs.zip
+tar xfz /tmp/gogs.tar.gz -C /app
+rm /tmp/gogs.tar.gz
 
 # Create links
 rm -rf /app/gogs/data /app/gogs/log

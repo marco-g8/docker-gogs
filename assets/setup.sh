@@ -9,6 +9,7 @@ wget --quiet ${DOWNLOAD_URL} -O /tmp/gogs.tar.gz
 mkdir /app
 mkdir /data
 tar xfz /tmp/gogs.tar.gz -C /app
+chown -R root:root /app/gogs
 rm /tmp/gogs.tar.gz
 
 # Create links
